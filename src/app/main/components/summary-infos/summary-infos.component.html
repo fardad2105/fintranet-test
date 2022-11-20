@@ -1,0 +1,79 @@
+<div class="stepsdemo-content">
+  <p-card>
+    <ng-template pTemplate="title">Summary Info</ng-template>
+    <ng-template pTemplate="subtitle">
+      you can see information of all steps
+    </ng-template>
+    <div class="grid">
+      <div class="col">
+        <p-image
+          [src]="getImage()"
+          alt=""
+          srcset=""
+          width="500"
+          [preview]="true"
+        ></p-image>
+      </div>
+      <div class="col" *ngIf="summaryInfos">
+        <div class="personal-info">
+          <span class="title"> Work Days: </span>
+          <span>{{ summaryInfos.personalInformation.days }}</span>
+        </div>
+        <div class="personal-info">
+          <span class="title"> Date Work: </span>
+          <span>
+            {{ summaryInfos.personalInformation.datework }}
+          </span>
+        </div>
+        <div class="personal-info">
+          <span class="title"> Degree: </span>
+          <span>
+            {{ summaryInfos.personalInformation.degree.name }}
+          </span>
+        </div>
+        <div class="personal-info">
+          <span class="title">Source:</span>
+          <span>{{ summaryInfos.personalInformation.source }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col" *ngIf="summaryInfos">
+        <div class="personal-info">
+          <span class="title"> FirstName: </span>
+          <span>{{ summaryInfos.selectedUser.firstname }}</span>
+        </div>
+        <div class="personal-info">
+          <span class="title"> LastName: </span>
+          <span>
+            {{ summaryInfos.selectedUser.lastname }}
+          </span>
+        </div>
+        <div class="personal-info">
+          <span class="title"> NationalCode: </span>
+          <span>
+            {{ summaryInfos.selectedUser.nationalCode }}
+          </span>
+        </div>
+        <div class="personal-info">
+          <span class="title">Age:</span>
+          <span>{{ summaryInfos.selectedUser.age }}</span>
+        </div>
+        <div class="personal-info">
+          <span class="title">Country:</span>
+          <span>{{ summaryInfos.selectedUser.country }}</span>
+        </div>
+      </div>
+    </div>
+    <ng-template pTemplate="footer">
+      <div class="grid grid-nogutter justify-content-end">
+        <p-button
+          label="Complete and go to First Page"
+          (onClick)="nextPage()"
+          icon="pi pi-angle-right"
+          iconPos="right"
+        ></p-button>
+      </div>
+    </ng-template>
+  </p-card>
+</div>

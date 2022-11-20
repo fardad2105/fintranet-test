@@ -1,0 +1,33 @@
+<div class="stepsdemo-content">
+  <p-card>
+    <ng-template pTemplate="title"> Upload Image </ng-template>
+    <ng-template pTemplate="subtitle">
+      Please Upload your selected Image
+    </ng-template>
+    <div class="grid">
+      <img class="col-6 col-offset-3" style="cursor: pointer;" [src]="imgSrc" alt="" srcset="" (click)="fileUploader.click()" />
+        <input
+          type="file"
+          style="display: none"
+          accept="image/*"
+          name="imageUrl"
+          #fileUploader
+          ngModel
+          required
+          (change)="showPreview($event)"
+        />
+    </div>
+
+    <ng-template pTemplate="footer">
+      <div class="grid grid-nogutter justify-content-end">
+        <p-button
+          label="Next"
+          (onClick)="nextPage()"
+          icon="pi pi-angle-right"
+          iconPos="right"
+          [disabled]="!next"
+        ></p-button>
+      </div>
+    </ng-template>
+  </p-card>
+</div>

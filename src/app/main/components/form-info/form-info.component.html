@@ -1,0 +1,132 @@
+<div class="stepsdemo-content">
+  <p-card>
+    <ng-template pTemplate="title"> Form Info</ng-template>
+    <ng-template pTemplate="subtitle">
+      Please fill all inputs
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div class="ui-g-12 ui-md-12">
+        <p for="days">How much day do you want to work:</p>
+        <img [src]="selectImage">
+        <input
+          #days="ngModel"
+          id="firstname"
+          type="number"
+          class="w-50"
+          required
+          pInputText
+          [(ngModel)]="personalInformation.days"
+          [ngClass]="{
+            'ng-dirty':
+              (days.invalid && submitted) ||
+              (days.dirty && days.invalid)
+          }"days
+        />
+        <p
+          *ngIf="
+            (days.invalid && submitted) ||
+            (days.dirty && days.invalid)
+          "
+          class="p-error"
+        >
+          days is required.
+        </p>
+      </div>
+      <div class="ui-g-12 ui-md-12">
+        <p for="dateofwork">Date Of Work</p>
+        <p-calendar
+          #datework="ngModel"
+          id="dateofwork"
+          ateFormat="dd.mm.yy"
+          [readonlyInput]="true"
+          [maxDate]="nextFiveDay"
+          [style]="{'width': '50%'}"
+          [(ngModel)]="personalInformation.datework"
+          [ngClass]="{
+            'ng-dirty':
+              (datework.invalid && submitted) ||
+              (datework.dirty && datework.invalid)
+          }"
+        ></p-calendar>
+        <p
+          *ngIf="
+            (datework.invalid && submitted) ||
+            (datework.dirty && datework.invalid)
+          "
+          class="p-error"
+        >
+          date of work is required.
+        </p>
+      </div>
+
+      <div class="ui-g-12 ui-md-12">
+        <p for="degree">Degree</p>
+        <p-dropdown
+          #degree="ngModel"
+          id="degree"
+          [options]="degrees"
+          [style]="{'width': '50%'}"
+          [(ngModel)]="personalInformation.degree"
+          optionLabel="name"
+          [ngClass]="{
+            'ng-dirty':
+              (degree.invalid && submitted) ||
+              (degree.dirty && degree.invalid)
+          }"
+        ></p-dropdown>
+        <p
+          *ngIf="
+            (degree.invalid && degree) ||
+            (degree.dirty && degree.invalid)
+          "
+          class="p-error"
+        >
+         Degree is required.
+        </p>
+      </div>
+      <div class="ui-g-12 ui-md-12">
+        <p for="firstname">Source of fund</p>
+        <input
+          #source="ngModel"
+          id="source"
+          type="text"
+          [style]="{'width': '50%'}"
+          onkeydown="return /[a-z@#\b\s]/i.test(event.key)"
+          required
+          pInputText
+          [(ngModel)]="personalInformation.source"
+          [ngClass]="{
+            'ng-dirty':
+              (source.invalid && submitted) ||
+              (source.dirty && source.invalid)
+          }"
+        />
+        <p
+          *ngIf="
+            (source.invalid && submitted) ||
+            (source.dirty && source.invalid)
+          "
+          class="p-error"
+        >
+          Source is required.
+        </p>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+      <div class="grid grid-nogutter justify-content-between">
+        <p-button
+          label="Back"
+          (onClick)="prevPage()"
+          icon="pi pi-angle-left"
+        ></p-button>
+        <p-button
+          label="Next"
+          (onClick)="nextPage()"
+          icon="pi pi-angle-right"
+          iconPos="right"
+        ></p-button>
+      </div>
+    </ng-template>
+  </p-card>
+</div>

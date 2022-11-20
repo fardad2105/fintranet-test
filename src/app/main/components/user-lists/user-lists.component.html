@@ -1,0 +1,53 @@
+<div class="stepsdemo-content">
+  <p-card>
+    <ng-template pTemplate="title"> User Informations </ng-template>
+    <ng-template pTemplate="subtitle"> Please Select Current User </ng-template>
+    <ng-template pTemplate="content">
+      <p-table
+        [value]="users"
+        selectionMode="single"
+        [(selection)]="selectedUser"
+        dataKey="nationalCode"
+        (onRowSelect)="onRowSelect($event)"
+        (onRowUnselect)="onRowUnselect($event)"
+        [tableStyle]="{ 'min-width': '50rem' }"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>NationalCode</th>
+            <th>Age</th>
+            <th>Country</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user let-rowIndex="rowIndex">
+          <tr [pSelectableRow]="user" [pSelectableRowIndex]="rowIndex">
+            <td>{{ user.firstname }}</td>
+            <td>{{ user.lastname }}</td>
+            <td>{{ user.nationalCode }}</td>
+            <td>{{ user.age }}</td>
+            <td>{{ user.country }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+      <div class="grid grid-nogutter justify-content-between">
+        <p-button
+          label="Back"
+          (onClick)="prevPage()"
+          icon="pi pi-angle-left"
+        ></p-button>
+        <p-button
+          label="Next"
+          (onClick)="nextPage()"
+          [disabled]="!isSelect"
+          icon="pi pi-angle-right"
+          iconPos="right"
+        ></p-button>
+      </div>
+    </ng-template>
+  </p-card>
+</div>
